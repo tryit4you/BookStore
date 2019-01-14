@@ -1,0 +1,14 @@
+﻿@model CategoryViewModels
+@foreach (var category in Model.Categories)
+{
+
+    var url = "/c/" + category.MetaName + "/" + category.Id;
+
+    <li>
+        <a href="@url" class="d-flex justify-content-between">
+            <p>@category.Name</p>
+            <p>@category.SummaryBook</p>
+        </a>
+    </li>
+
+}

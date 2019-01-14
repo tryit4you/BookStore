@@ -1,0 +1,39 @@
+﻿@model Category
+@{
+    ViewBag.Title = Model.Name;
+    var url = "/c/" + Model.MetaName + "/" + Model.Id;
+}
+@section banner{
+    <section class="brands-area">
+        <div class="container">
+            <div class="brand-wrap">
+                <ul class="list-inline">
+                    <li><a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right"></i>
+                    <li><a href="@url">@Model.Name</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End brands Area -->
+}
+
+@await Html.PartialAsync("_sidebarPartial")
+
+<div class="col-lg-9 posts-list">
+    <input type="hidden" class="hiddenId" value="@Model.Id" />
+    <div class="row" id="data-render">
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="pagination" id="pagination">
+    </div>
+
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    @await Html.PartialAsync("BookItemSummary")
+
+</script>
+@section scripts{
+    <script src="~/js/components/categoryScripts.min.js"></script>
+}

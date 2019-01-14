@@ -1,0 +1,37 @@
+﻿<div class="col-lg-3 sidebar-widgets">
+    <div class="widget-wrap">
+
+        <div class="single-sidebar-widget popular-post-widget">
+            <h4 class="popular-title">Lượt tải nhiều nhất</h4>
+            <div class="popular-post-list">
+                @await Component.InvokeAsync("Top5Download")
+            </div>
+        </div>
+
+        <div class="single-sidebar-widget post-category-widget">
+            <h4 class="category-title">Danh mục ebook</h4>
+            <ul class="cat-list">
+               @await  Component.InvokeAsync("Category")
+            </ul>
+        </div>
+        <div class="single-sidebar-widget newsletter-widget">
+            <h4 class="newsletter-title">Đăng ký nhận tin</h4>
+            <p>
+                Đăng ký nhận thông báo qua email khi có ebook mới.
+            </p>
+            <div class="form-group d-flex flex-row">
+                <div class="col-autos">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+                    </div>
+                </div>
+                <a href="#" class="bbtns">Subcribe</a>
+            </div>
+        </div>
+    </div>
+</div>

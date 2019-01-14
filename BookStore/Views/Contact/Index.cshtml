@@ -1,0 +1,15 @@
+﻿@model Page
+@section banner{
+    <section class="brands-area">
+        <div class="container">
+            <div class="brand-wrap">
+                <ul class="list-inline">
+                    <li><a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right"></i>
+                    <li><a href="/lien-he">liên hệ</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+}
+@Html.Raw(Model.Content)

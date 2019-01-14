@@ -1,0 +1,135 @@
+﻿@model ApplicationUser
+@section banner{
+    <section class="brands-area">
+        <div class="container">
+            <div class="brand-wrap">
+                <ul class="list-inline">
+                    <li><a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right"></i>
+                    <li><a href="#">quản lý</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+}
+<style>
+    .btn-clear {
+        position: absolute;
+        left: 23%;
+        top: 22%;
+        color: #d45757;
+    }
+
+    @@media only screen and (max-width:1200px) {
+        .btn-clear {
+            left: 27%;
+        }
+    }
+</style>
+@await Html.PartialAsync("_sidebarUserPartial")
+<div class="col-md-9">
+    <input type="hidden" id="userId" value="@Model.Id" />
+    <div class="clearfix">
+        <div class="card ">
+            <div class="cart-in">
+                <div class="card-header">
+                    <h3 id="roomHeader">Quản lý</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <div class="form-content" style="display:inline-block">
+                            <div class="form-group form-inline pull-left">
+                                <div class="form-line">
+                                    <input type="text" class="form-control" placeholder="Tìm kiếm..." name="Search" id="txtQuery">
+                                    <button type="button" class="btn btn-outline-primary btn-sm btn-search"><span class="fa fa-search "></span></button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm hidden" id="btn-Deletemulti"><span class="fa fa-trash-o"></span></button>
+                                </div>
+                                <hr />
+
+                            </div>
+
+                        </div>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th><label><input type="checkbox" name="selectAll" value="" id="selectAll" />Tất cả</label></th>
+                                    <th width="30%">Tên ebook</th>
+                                    <th>Hình</th>
+                                    <th>Lượt tải</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbData"></tbody>
+                        </table>
+                        <div class="row">
+
+
+                            <div class="col-sm-12">
+                                <div class="pagination" id="pagination">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="cropBookThumbnail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chỉnh sửa ảnh</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="croppie-ebook" style="width:350px">
+                </div>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary cropEbookThumbnail">Crop &amp; Save</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr class="row_item" data-id="{{ID}}">
+        <td>
+            <input type="checkbox" id="select-{{ID}}" name="selectAll" data-id="{{ID}}" class="chk-col-red selectedItem" />
+            <label for="select-{{ID}}"></label>
+        </td>
+        <td><a href="/e-books/@Model.Id">{{Name}}</a></td>
+        <td>
+            <a href="/e-books/@Model.Id">
+
+                <img class="img-responsive" src="{{Image}}" width="70" />
+            </a>
+        </td>
+        <td>{{CountDown}}</td>
+
+        <td>{{{Status}}}</td>
+
+        <td>
+            <a href="#" class="badge badge-danger btn-delete" data-id="{{ID}}"> <i class="fa fa-trash"></i>Xóa</a>
+            <a href="/cap-nhat/@Model.Id&{{ID}}" class="badge badge-primary">
+                <i class="fa fa-edit col-green"></i>Sửa
+            </a>
+        </td>
+    </tr>
+</script>
+
+@section scripts{
+    <script src="~/js/components/bookManagersScripts.min.js"></script>
+}

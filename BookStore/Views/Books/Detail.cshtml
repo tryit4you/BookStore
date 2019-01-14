@@ -1,0 +1,229 @@
+﻿@model BookStore.ViewModels.BookDetailViewModel
+@{
+    string booktypeurl = string.Empty;
+    if (Model.BookType != null)
+    {
+        booktypeurl = "/t/" + Model.BookType.MetaName + "/" + Model.BookType.Id;
+    }
+    string pdf=string.Empty, epub=string.Empty, mobi=string.Empty,format=string.Empty;
+    if (Model.DownloadLinks!=null)
+    {
+        pdf = (Model.DownloadLinks.PdfLink != "" ? "Pdf" : "");
+        epub = (Model.DownloadLinks.EpubLink != "" ? "Epub" : "");
+        mobi = (Model.DownloadLinks.MobiLink != "" ? "Mobi" : "");
+
+    }
+}
+@addTagHelper *,BookStore
+@section banner{
+    <section class="brands-area">
+        <div class="container">
+            <div class="brand-wrap">
+                <ul class="list-inline">
+                    <li><a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right"></i>
+                    <li><a href="#">@Model.BookDetail.Name</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+}
+
+<div class="col-lg-9">
+    <div class="single-page-details">
+
+        <div class="book-details">
+            <div class="book-type-simple">
+                <div class="book-images-container row">
+                    <div class="col-md-5">
+                        <div class="book-images--main">
+                            <input type="hidden" id="ebookId" value="@Model.BookDetail.Id" />
+                            <div class="ebook-gallery-image">
+                                <a href="">
+                                    <img class="img-responsive image-detail" src="@Model.BookDetail.ThumbnailUrl" />
+                                </a>
+                            </div>
+
+                            <div class="social">
+                                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                <div class="addthis_inline_share_toolbox_fjrz"></div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="summary entry-summary">
+                            <h1 itemprop="name" class="product_title entry-title">
+                                @Model.BookDetail.Name
+
+                            </h1>
+
+                            <div class="product-terms">
+                                @if (!string.IsNullOrEmpty(booktypeurl))
+                                {
+
+                                    <a href="@booktypeurl" class="booktypeLink">@Model.BookType.Name</a>
+                                }
+                            </div>
+                            <div class="description">
+                                <p>@(Html.Raw(Model.BookDetail.LongDescription)==null?Html.Raw("Không có mô tả nào") : Html.Raw(Model.BookDetail.LongDescription))</p>
+                            </div>
+                            <div class="toggle-description"><a href="#" class="show-des"><i style="font-size:1.5em" class="fa fa-angle-double-down"></i></a></div>
+
+                        </div>
+                        <div class="dowload-area row">
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                @if (pdf != "")
+                                {
+                                    <a href="@Model.DownloadLinks.PdfLink" style="max-width:95%" target="_blank" class="btn btn-outline-primary btn-small btn-download">
+                                        <span>
+                                            <img src="~/images/if_1-02_511559 (3).ico" />
+                                        </span>link .pdf
+                                    </a>
+                                }
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                @if (epub != "")
+                                {
+                                    <a href="@Model.DownloadLinks.EpubLink" style="max-width:95%" target="_blank" class="btn btn-light btn-small btn-download">
+                                        <span>
+                                            <img src="~/images/if_file-08_762530.ico" />link .epub
+                                        </span>
+                                    </a>
+                                }
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                @if (mobi != "")
+                                {
+                                    <a href="@Model.DownloadLinks.MobiLink " target="_blank" style="max-width:95%" class="btn btn-light btn-small btn-download">
+                                        <span>
+                                            <img src="~/images/if_file-10_762540.ico" />link .mobi
+                                        </span>
+                                    </a>
+                                }
+                            </div>
+                         
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12">
+                        <div class="alert alert-danger alert-dismissible fade show " role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <span style="font-weight:600">Lưu ý:</span><br />
+                            Ebook  <span style="font-weight:600">'@Model.BookDetail.Name' </span>được chia sẻ hoàn toàn miễn phí từ nhiều nguồn trên mạng không vì mục đích thương mại
+                            dành cho những bạn chưa có điều kiện mua sách gốc.<br />
+                            - Nếu có điều kiện hãy ủng hộ tác giả bằng việc mua sách gốc.
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <section>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 ">
+                                    <h4 class="text-primary">Thông tin </h4>
+                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+                                            <table class="table table-hover table-responsive ">
+                                                <tr>
+                                                    <th class="customth">Tên ebook</th>
+                                                    <td class="customtd">@Model.BookDetail.Name</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="customth">Tác giả</th>
+                                                    <td class="customtd">@Model.BookDetail.Authors</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="customth">Dung lượng</th>
+                                                    <td class="customtd">@Model.BookDetail.Cappacity <small>-Mb</small> </td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="customth">Ngôn ngữ</th>
+                                                    <td class="customtd">@Model.BookDetail.Language</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="customth">Đơn vị phát hành</th>
+                                                    <td class="customtd">@Model.BookDetail.PublishBy</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="customth">Năm phát hành</th>
+                                                    <td>@Model.BookDetail.DateRelease</td>
+                                                </tr>
+                                                <tr>
+                                                    <th class="customth">Định dạng</th>
+                                                    <td>
+                                                        @if (Model.DownloadLinks != null)
+                                                        {
+                                                            format = string.Join(" ", pdf, epub, mobi);
+                                                        }
+                                                    @format
+                                                </td>
+                                            </tr>
+                                                
+                                            @if (Model.BookDetail.TextReference != null&&Model.BookDetail.LinkReference!=null)
+                                            {
+                                                <tr>
+                                                    <th class="customth">Nguồn tham khảo</th>
+                                                    <td class="customtd" ><a href="@(Model.BookDetail.LinkReference==null?"#":Model.BookDetail.LinkReference)">@Model.BookDetail.TextReference</a> </td>
+
+                                                </tr>
+                                             
+                                            }
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="text-primary">Bình luận</h4>
+                                    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-include-parent="false"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                @if (Model.RelatedBooks.Count() > 0)
+                {
+
+                    <section class="posts-list">
+                        <h4 class="header">Các ebook liên quan</h4>
+
+                        <ul class="ebook-relates-all row">
+
+                            @foreach (var book in Model.RelatedBooks)
+                            {
+                                @await Html.PartialAsync("RelatedBookItemSummary", book);
+                            }
+                        </ul>
+                        <div class="clearfix"></div>
+                    </section>
+                }
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</div>
+@await Html.PartialAsync("_sidebarPartial")
+@section scripts{
+    <script src="~/js/components/detailScripts.min.js"></script>
+}
+

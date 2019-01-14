@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Kho ebook miễn phí, ebook chuyên ngành phong phú";
+
+}
+
+@section banner{
+    <div class="banner-breadcum section">
+        <div class="row">
+
+            @await Component.InvokeAsync("Slide")
+        </div>
+    </div>  <!-- Start brands Area -->
+    <section class="brands-area">
+       <a href="#" class="btnPause" name="name" ><i class="fa fa-pause"></i></a>
+        <div class="container">
+            @await Component.InvokeAsync("BookTypeMarquee")
+        </div>
+    </section>
+    <!-- End brands Area -->
+}
+
+@await Html.PartialAsync("_sidebarPartial")
+
+<div class="col-lg-9 posts-list">
+    <div id="search_result"></div>
+    <div class="clearfix"></div>
+    <div class="row" id="data-render">
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="pagination" id="pagination">
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    @await Html.PartialAsync("BookItemSummary")
+</script>
+@section scripts{
+    <script src="~/js/components/homeScripts.min.js"></script>
+}

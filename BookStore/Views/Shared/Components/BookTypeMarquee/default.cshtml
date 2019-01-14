@@ -1,0 +1,16 @@
+﻿@model IEnumerable<BookType>
+
+
+
+<marquee id="marquee" behavior="alternate" direction="left"  >
+    @foreach (var type in Model)
+    {
+        var url = "/t/" + type.MetaName + "/" + type.Id;
+        <span class="srch-icon">
+            <a href="@url" title="@type.Name">
+                <img src="@type.ThumbnailUrl" alt="@type.Name" style="max-height:50px;padding:0px 2%;">
+            </a>
+        </span>
+
+    }
+   </marquee>

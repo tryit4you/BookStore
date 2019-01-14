@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Course>
+
+@foreach (var course in Model)
+{
+
+
+    var url = "/khoa-hoc/" + course.MetaName + "/" + course.Id;
+    <div class="single-post-list d-flex flex-row align-items-center">
+        <div class="thumb">
+            <a href="@url"><img class="img-fluid" src="@course.AvatarData" alt=""></a>
+        </div>
+        <div class="details">
+            <a href="@url"><h6>@course.Name</h6></a>
+        </div>
+    </div>
+}
+

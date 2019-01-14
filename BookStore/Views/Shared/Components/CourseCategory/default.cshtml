@@ -1,0 +1,14 @@
+﻿@model IEnumerable<CourseCategory>
+@foreach (var category in Model)
+{
+
+    var url = "/c/"+"khoa-hoc/" + category.MetaName + "/" + category.Id;
+
+    <li>
+        <a href="@url" class="d-flex justify-content-between">
+            <p>@category.Name</p>
+
+        </a>
+    </li>
+
+}

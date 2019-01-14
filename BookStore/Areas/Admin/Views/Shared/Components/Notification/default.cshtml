@@ -1,0 +1,61 @@
+﻿@model NotificationViewModels
+@using BookStore.Areas.Admin.ViewModels
+@{ 
+    var register = Model.UserRegisters.Count();
+    var book = Model.BooksUpload.Count();
+}
+<li class="dropdown notifications-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-bell-o"></i>
+        @if (register!=0)
+        {
+        <span class="label label-warning">@register</span>
+
+        }
+    </a>
+    <ul class="dropdown-menu">
+        <li class="header">Bạn có @register thông báo mới</li>
+        <li>
+            <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+                @foreach (var user in Model.UserRegisters)
+                {
+                    <li>
+                    <a href="/admin/account/index">
+                        <i class="fa fa-users text-aqua"></i> @user.UserName vừa đăng ký.
+                    </a>
+                </li>
+                }
+            </ul>
+        </li>
+        <li class="footer"><a href="/admin/account/index">Xem tất cả</a></li>
+    </ul>
+</li>
+<li class="dropdown tasks-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-flag-o"></i>
+        @if (book!=0)
+        {
+
+        <span class="label label-danger">@book</span>
+        }
+    </a>
+    <ul class="dropdown-menu">
+        <li class="header">Có @book ebook được tải lên</li>
+ 
+              <li>
+            <!-- inner menu: contains the actual data -->
+            <ul class="menu">
+                @foreach (var b in Model.BooksUpload)
+                {
+                    <li>
+                    <a href="/admin/books/index#loadByUser">
+                        <i class="fa fa-book text-aqua"></i> <img src="@b.ThumbnailUrl" class="img img-fluid" width="20"/> @b.Name
+                    </a>
+                </li>
+                }
+            </ul>
+        </li>
+        <li class="footer"><a href="/admin/books/index#loadByUser">Xem tất cả</a></li>
+    </ul>
+</li>

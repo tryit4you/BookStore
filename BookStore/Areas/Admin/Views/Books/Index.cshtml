@@ -1,0 +1,314 @@
+﻿@{
+    ViewBag.Title = "Quản trị ebook";
+}
+@addTagHelper *,BookStore
+@using BookStore.Data.Models
+@using BookStore.Areas.Admin.ViewModels
+@model ApproveEbooksViewModels
+
+@{
+    var booktypes = (IEnumerable<BookType>)ViewData["BookTypes"];
+    var dataCollapse = (ApproveEbooksViewModels)ViewBag.CollapseList;
+}
+
+<div class="alert alert-info align-center">
+    Quản trị e-book
+</div>
+
+<div class="clearfix">
+    <div class="card ">
+        <div class="cart-in">
+
+            <ul class="nav nav-tabs tab-col-teal" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" data-toggle="tab">
+                        <i class="fa fa-table col-blue "></i> Danh sách ebook
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#createEbook" data-toggle="tab">
+                        <i class="fa fa-plus-circle col-green"></i> Tạo mới Ebook
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#EditEbook" data-toggle="tab">
+                        <i class="fa fa-edit col-orange"></i> Sửa thông tin Ebook
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#loadByUser" data-toggle="tab">
+                        <i class="fa fa-users col-purple"></i> Danh sách chờ duyệt @if (Model.Books.Count() != 0)
+                        {
+                            <span class="label label-danger">@Model.Books.Count()</span>
+                        }
+                    </a>
+                </li>
+            </ul>
+            <div class="body">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+                        <div class="show-Table hidden">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-inline pull-left">
+                                        <div class="form-line">
+                                            <span class="btn-clear"><i class="fa fa-times-circle"></i></span>
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm..." name="Search" id="txtSearch">
+                                            <button class="btn bg-blue"><i class="fa fa-search"></i></button> <button class="btn btn-danger" id="btn-Deletemulti"><i class="fa fa-trash"></i>Xóa</button>
+                                        </div>
+                                        <hr />
+                                    </div>
+                                    <div class="pull-right">
+                                        <button class="btn bg-purple btn-flat margin btn-showCollapse">
+                                            <i class="fa fa-list-alt"> </i> Xem colapse
+                                        </button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+
+                                <hr />
+                            </div>
+
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><label><input type="checkbox" name="selectAll" value="" id="selectAll" />Chọn tất cả</label></th>
+                                        <th width="30%">Tên ebook</th>
+                                        <th>Hình</th>
+                                        <th>Ngày đăng</th>
+                                        <th>Người đăng</th>
+                                        <th>Lượt tải</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbData"></tbody>
+                            </table>
+
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                                    <p>Trang <mark><span id="currentpage"></span></mark>/<mark><span id="totalpage"></span></mark></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <div class="pagination" id="pagination">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="show-Colapse">
+                            <div class="panel-group" id="accordion">
+                                <button class="btn bg-purple btn-flat margin btn-showTable">
+                                    <i class="fa fa-table"> </i> Xem bảng
+                                </button>
+                                <div class="panel-group" id="accordion">
+                                    @if (dataCollapse.Users.Count() != 0)
+                                    {
+                                        foreach (var item in dataCollapse.Users)
+                                        {
+                                            <div class="box box-widget collapsed-box">
+                                                <div class="box-header with-border">
+                                                    <div class="user-block">
+                                                        <img class="img-circle" src="@item.UrlAvatar" alt="User Image">
+                                                        <span class="username"><a href="#" data-widget="collapse">@item.UserName</a></span>
+
+                                                        <span class="description">Đăng ký thành viên lúc - @item.CreatedDate</span>
+                                                    </div>
+                                                    <div class="box-tools">
+                                                        <span class="uploadItems label label-primary">@dataCollapse.Books.Where(x => x.UserId == item.Id).Count()</span>
+                                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                            <i class="fa fa-plus"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                                    </div>
+                                                </div>
+                                                <!-- /.box-header -->
+                                                <div class="box-body" style="">
+                                                    <table class="table table-bordered table-striped">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Tên ebook</th>
+                                                                <th>Hình</th>
+                                                                <th>Ngày đăng</th>
+                                                                <th>Trạng thái</th>
+                                                                <th>Thao tác</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbData">
+                                                            @foreach (var book in dataCollapse.Books.Where(x => x.UserId == item.Id))
+                                                            {
+                                                                @await Html.PartialAsync("_loadByUserPartial", book);
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {<div class="alert alert-info alert-dismissible">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                            <h4><i class="icon fa fa-info"></i> Thông báo!</h4>
+                                            Tất cả các ebook đã được duyệt!
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in " id="createEbook">
+
+                        @await Html.PartialAsync("_CreatePartial")
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in " id="EditEbook">
+                        @await Html.PartialAsync("_EditPartial")
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in " id="loadByUser">
+
+                        <h2>Ebook được tải lên bởi người dùng</h2>
+                        <div class="panel-group" id="accordion">
+                            @if (Model.Users.Count() != 0)
+                            {
+                                foreach (var item in Model.Users)
+                                {
+                                    <div class="box box-widget collapsed-box">
+                                        <div class="box-header with-border">
+                                            <div class="user-block">
+                                                <img class="img-circle" src="@item.UrlAvatar" alt="User Image">
+                                                <span class="username"><a href="#" data-widget="collapse">@item.UserName</a></span>
+
+                                                <span class="description">Đăng ký thành viên lúc - @item.CreatedDate</span>
+                                            </div>
+                                            <div class="box-tools">
+                                                <span class="uploadItems label label-warning">@Model.Books.Where(x => x.UserId == item.Id).Count()</span>
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-plus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body" style="">
+                                            <table class="table table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Tên ebook</th>
+                                                        <th>Hình</th>
+                                                        <th>Ngày đăng</th>
+                                                        <th>Trạng thái</th>
+                                                        <th>Thao tác</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbData">
+                                                    @foreach (var book in Model.Books.Where(x => x.UserId == item.Id))
+                                                    {
+                                                        @await Html.PartialAsync("_loadByUserPartial", book);
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="alert alert-info alert-dismissible">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                    <h4><i class="icon fa fa-info"></i> Thông báo!</h4>
+                                    Tất cả các ebook đã được duyệt!
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr class="row_item" data-id="{{ID}}">
+        <td>
+            <input type="checkbox" id="select-{{ID}}" name="selectAll" data-id="{{ID}}" class="chk-col-red selectedItem" />
+            <label for="select-{{ID}}"></label>
+        </td>
+        <td>{{Name}}</td>
+        <td>
+            <img class="img-responsive" src="{{Image}}" width="70" />
+        </td>
+        <td>{{CreatedDate}}</td>
+        <td>{{CreatedBy}}</td>
+        <td>{{CountDown}}</td>
+
+        <td>{{{Status}}}</td>
+
+        <td>
+            <a class="badge bg-red btn-delete" href="#" data-id="{{ID}}">
+                <i class="fa fa-trash"></i>Xóa
+            </a>
+            <a href="# " class="badge bg-orange-active btn-edit" data-id="{{ID}}">
+                <i class="fa fa-edit"></i>Sửa
+            </a>
+        </td>
+    </tr>
+</script>@await Html.PartialAsync("_cropImageModal")
+
+@section jsFooter{
+    <script src="~/Admin/dist/js/controller/bookController.min.js"></script>
+    <script>
+        var $uploadCrop,
+            tempFilename,
+            rawImg,
+            imageId;
+        function readFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.upload-demo').addClass('ready');
+                    $('#cropImagePop').modal('show');
+                    rawImg = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            else {
+                swal("Sorry - you're browser doesn't support the FileReader API");
+            }
+        }
+
+        $uploadCrop = $('#upload-demo').croppie({
+            viewport: {
+                width: 283,
+                height: 405
+            },
+            boundary: {
+                width: 300,
+                height: 500
+            },
+            enforceBoundary: false,
+            enableExif: true
+        });
+        $('#cropImagePop').on('shown.bs.modal', function () {
+            $uploadCrop.croppie('bind', {
+                url: rawImg
+            }).then(function () {
+                console.log('jQuery bind complete');
+            });
+        });
+
+        $('.item-img').on('change', function () {
+            imageId = $(this).data('id'); tempFilename = $(this).val();
+            $('#cancelCropBtn').data('id', imageId); readFile(this);
+        });
+        $('#cropImageBtn').on('click', function (ev) {
+            $uploadCrop.croppie('result', {
+                type: 'base64'
+            }).then(function (resp) {
+                $('#item-img-output').attr('src', resp);
+                var id = $('#hiddenId').val();
+                $('#ImgThumbnail,#EditThumbnail').attr('src', resp);
+                $('#cropImagePop').modal('hide');
+            });
+        });
+    </script>
+}

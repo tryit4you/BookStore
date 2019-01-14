@@ -1,0 +1,180 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <UserSecretsId>59f9b2a7-b140-4ff9-966e-f77410e1ea86</UserSecretsId>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <TypeScriptToolsVersion>3.0</TypeScriptToolsVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+      
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <!--<AspNetCoreModuleHostingModel>inprocess</AspNetCoreModuleHostingModel>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\Admin\bower_components\**" />
+    <Content Remove="wwwroot\Admin\bower_components\**" />
+    <EmbeddedResource Remove="wwwroot\Admin\bower_components\**" />
+    <None Remove="wwwroot\Admin\bower_components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BrotliSharpLib" Version="0.3.2" />
+    <PackageReference Include="jQuery" Version="3.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Admin\dist\js\controller\commonController.js" />
+    <None Include="wwwroot\Admin\dist\js\controller\contactController.js" />
+    <None Include="wwwroot\Admin\dist\js\controller\feedbackController.js" />
+    <None Include="wwwroot\Admin\dist\js\controller\pageController.js" />
+    <None Include="wwwroot\Admin\dist\js\controller\slideController.js" />
+    <None Include="wwwroot\Admin\dist\js\controller\emailRegisterController.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\jquery.tinymce.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\jquery.tinymce.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\advlist\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\advlist\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\anchor\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\anchor\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\autolink\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\autolink\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\autoresize\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\autoresize\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\autosave\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\autosave\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\bbcode\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\bbcode\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\charmap\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\charmap\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\codesample\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\codesample\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\code\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\code\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\colorpicker\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\colorpicker\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\contextmenu\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\contextmenu\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\directionality\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\directionality\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\emoticons\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\emoticons\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\fullpage\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\fullpage\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\fullscreen\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\fullscreen\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\hr\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\hr\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\imagetools\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\imagetools\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\image\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\image\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\importcss\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\importcss\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\insertdatetime\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\layer\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\layer\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\legacyoutput\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\link\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\link\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\lists\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\lists\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\media\moxieplayer.swf" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\media\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\media\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\nonbreaking\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\noneditable\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\noneditable\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\pagebreak\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\pagebreak\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\paste\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\paste\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\preview\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\preview\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\print\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\print\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\save\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\save\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\searchreplace\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\searchreplace\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\spellchecker\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\spellchecker\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\tabfocus\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\tabfocus\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\table\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\table\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\template\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\template\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\textcolor\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\textcolor\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\textpattern\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\textpattern\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\visualblocks\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\visualblocks\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\visualchars\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\visualchars\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\wordcount\plugin.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\plugins\wordcount\plugin.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\readme.md" />
+    <None Include="wwwroot\Admin\plugins\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <None Include="wwwroot\Admin\plugins\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <None Include="wwwroot\Admin\plugins\tinymce\themes\inlite\theme.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\themes\inlite\theme.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\themes\modern\theme.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\themes\modern\theme.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\tinyConfig.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\tinymce.jquery.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\tinymce.jquery.min.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\tinymce.js" />
+    <None Include="wwwroot\Admin\plugins\tinymce\tinymce.min.js" />
+    <None Include="wwwroot\Admin\plugins\toastr\toastr.min.js" />
+    <None Include="wwwroot\fonts\iconic\fonts\Material-Design-Iconic-Font.svg" />
+    <None Include="wwwroot\fonts\iconic\fonts\Material-Design-Iconic-Font.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\CourseCategory\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\CourseCategory\_CreatePartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\CourseCategory\_EditPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Course\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Course\_CreatePartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Course\_EditPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Course\_loadByUserPartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Shared\_cropImageModal.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Components\CourseCategory\default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_sidebarCoursePartial.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\lib\jquery.validate.min.js">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

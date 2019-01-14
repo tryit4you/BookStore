@@ -1,0 +1,62 @@
+﻿@model SlideViewModels
+<div class="breadcrumb-image" style="background-image: url(@Model.UrlPannel);">
+    <div class="container text-center">
+        <div class="btn-bar" style="opacity:0">
+            <div id="buttons">
+                <a id="prev" href="#"></a>
+                <a id="next" href="#"></a>
+            </div>
+        </div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="10000">
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.Slides.Count(); i++)
+                {
+                    if (i == 0)
+                    {
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="active"></li>
+                    }
+                    else
+                    {
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@i"></li>
+
+                    }
+                }
+            </ol>
+            <div class="carousel-inner">
+                @{
+                    var j = 0;
+                }
+                @foreach (var slide in Model.Slides)
+                {
+
+                    if (j == 0)
+                    {
+                        <div class="carousel-item active">
+                            @Html.Raw(slide.Content)
+                            <small> @slide.Authors</small>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+
+                            @Html.Raw(slide.Content)
+                            <small> @slide.Authors</small>
+                        </div>
+
+                    }
+                    j++;
+                }
+            </div>
+
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only"></span>
+            </a>
+        </div>
+    </div>
+</div>

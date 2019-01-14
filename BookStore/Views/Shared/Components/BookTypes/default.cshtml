@@ -1,0 +1,11 @@
+﻿@model IEnumerable<BookTypeViewModels>
+
+@foreach (var booktype in Model)
+{
+    if (booktype.bookCount != 0)
+    {
+        var url = "/t/" + booktype.MetaName + "/" + booktype.Id;
+        <span><a href="@url">@booktype.Name</a><span>(@booktype.bookCount)</span></span>
+
+    }
+}

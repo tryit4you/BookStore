@@ -1,0 +1,163 @@
+[
+  {
+    "outputFileName": "wwwroot/css/stylebundle.css",
+    "inputFiles": [
+      "wwwroot/css/bootstrap.css",
+      "wwwroot/css/font-awesome.min.css",
+      "wwwroot/css/linearicons.css",
+      "wwwroot/css/magnific-popup.css",
+      "wwwroot/css/main.css",
+      "wwwroot/css/animate.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/components/bookManagersScripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/components/bookManagersScripts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/components/booktypeScripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/components/booktypeScripts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/components/categoryScripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/components/categoryScripts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/components/detailScripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/components/detailScripts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/components/homeScripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/components/homeScripts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/components/userAccountScripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/components/userAccountScripts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/scripts190818.js",
+    "inputFiles": [
+      "wwwroot/js/jquery.min.js",
+      "wwwroot/js/bootstrap.min.js",
+      "wwwroot/js/mustache.min.js",
+      "wwwroot/js/superfish.min.js",
+      "wwwroot/js/jquery.magnific-popup.min.js",
+      "wwwroot/js/main.js",
+      "wwwroot/js/pace.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/libscript190818.js",
+    "inputFiles": [
+      "wwwroot/lib/croppie/croppie.js",
+      "wwwroot/lib/select2/select2.min.js",
+      "wwwroot/lib/jquery.validate.min.js",
+      "wwwroot/lib/jquery.validate.unobtrusive.min.js",
+      "wwwroot/lib/bootbox.min.js",
+      "wwwroot/lib/toastr/toastr.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/commonController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/commonController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/common_user.js",
+    "inputFiles": [
+      "wwwroot/js/components/userAccountScripts.js",
+      "wwwroot/Admin/dist/js/controller/commonController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/css/AdminLTE.min.css",
+    "inputFiles": [
+      "wwwroot/Admin/dist/css/AdminLTE.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/hungitUploadFile.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/hungitUploadFile.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/css/customStyle.min.css",
+    "inputFiles": [
+      "wwwroot/Admin/dist/css/customStyle.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/bookController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/bookController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/bookTypeController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/bookTypeController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/categoryController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/categoryController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/contactController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/contactController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/courseCategoryController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/courseCategoryController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/courseController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/courseController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/emailRegisterController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/emailRegisterController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/feedbackController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/feedbackController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/pageController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/pageController.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/Admin/dist/js/controller/slideController.min.js",
+    "inputFiles": [
+      "wwwroot/Admin/dist/js/controller/slideController.js"
+    ]
+  }
+]

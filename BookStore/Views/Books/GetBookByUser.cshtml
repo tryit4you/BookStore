@@ -1,0 +1,105 @@
+﻿@model ApplicationUser
+
+@section banner{
+<section class="brands-area">
+    <div class="container">
+        <div class="brand-wrap">
+            <ul class="list-inline">
+                <li><a href="/">Trang chủ</a></li>
+                <i class="fa fa-angle-double-right"></i>
+                <li><a href="#">upload</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+}
+
+@await Html.PartialAsync("_sidebarUserPartial")
+<div class="col-lg-9 posts-list">
+    <input type="hidden" id="UserId" value="@Model.Id" />
+    <div id="search_result"></div>
+    <div class="clearfix"></div>
+
+    <div class="row" id="data-render">
+
+
+        <div class="clearfix"></div>
+    </div>
+
+    <div class="pagination" id="pagination">
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    @await Html.PartialAsync("BookItemSummary")
+</script>
+@section scripts{
+<script>
+    var config = {
+        pageSize: 12,
+        pageIndex: 1
+    };
+    var script = {
+        Init: function () {
+            script.loadData();
+        },
+        loadData: function (changePageSize) {
+            var search = $('#txtSearch').val();
+            var userId = $('#UserId').val();
+            $.ajax({
+                url: '/books/BookByUser',
+                type: 'POST',
+                data: {
+                    filter: search,
+                    userId: userId,
+                    page: config.pageIndex,
+                    pageSize: config.pageSize
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status) {
+
+                        var data = response.data;
+                        var html = '';
+                        var template = $('#data-template').html();
+                        $.each(data, function (i, item) {
+                            var url = "/v/" + item.metaName + "/" + item.id + "/";
+                            html += Mustache.render(template, {
+                                url: url,
+                                name: item.name,
+                                thumbnailUrl: item.thumbnailUrl,
+                                downloads: commonController.countDownload(item.countDownload),
+                                dateRelease: item.dateRelease,
+                                Language: commonController.language(item.language)
+                            });
+                        });
+                        $('#data-render').html(html);
+                        var totalPage = Math.ceil(response.total / config.pageSize);
+                        script.paging(response.total,response.page, function () {
+                            script.loadData();
+                        }, changePageSize);
+
+                    }
+                }
+            });
+        },
+      paging: function (totalRow, page, callback) {
+        $('#pagination').pagination({
+            items: totalRow,
+            itemsOnPage: config.pageSize,
+            currentPage: page,
+            hrefTextPrefix: '#trang-',
+            prevText: "&lt",
+            nextText: "&gt;",
+            cssStyle: 'light-theme',
+            onPageClick: function (page, event) {
+                config.pageIndex = page;
+                currentPage = page;
+                setTimeout(callback, 0);
+            }
+        });
+    }
+    };
+        script.Init();
+
+</script>
+}

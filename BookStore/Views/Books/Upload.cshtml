@@ -1,0 +1,299 @@
+﻿@model ApplicationUser
+
+@section banner{
+    <section class="brands-area">
+        <div class="container">
+            <div class="brand-wrap">
+                <ul class="list-inline">
+                    <li><a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right"></i>
+                    <li><a href="#">upload</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+}
+
+@await Html.PartialAsync("_sidebarUserPartial")
+<div class="col-md-9">
+    <div class="clearfix">
+        <div class="card ">
+            <div class="cart-in">
+                <div class="card-header">
+                    <h3 id="roomHeader">Upload ebook</h3>
+                </div>
+                <div class="card-body">
+                    <div class="container">
+                        <form role="form" id="frmEbook">
+                            <input type="hidden" id="txtId">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <label for="Name"><strong>Tên ebook </strong></label>
+                                    <input type="text" class="form-control" name="Name" id="txtName" >
+                                    <span class="validate text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group mt-2">
+                                <div class="form-inline">
+                                    <input type="file" accept="png/*" name="Image" value="Chọn hình" class="btn btn-primary item-img" />
+                                </div>
+                                <div class="form-inline">
+                                    <input type="hidden" id="urlImg" />
+                                    <img src="" id="ImgThumbnail" class="img" style="margin-top:20px" width="100" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Name">Danh mục</label>
+                                <br />
+                                <select name="EbookCategory" style="border-bottom: 1px solid #dddddd;" id="txtBookCategory" class="js-example-basic-single ">
+                                    <option value="">Chọn danh mục ebook</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="Name">Thể loại </label>
+                                <br />
+                                <select name="EbookType" style="border-bottom: 1px solid #dddddd;" id="txtBookType" class="js-example-basic-single ">
+                                    <option value="" class="form-control">Chọn một thể loại</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <label>Mô tả</label>
+                                    <textarea rows="10" name="Description" id="txtContent"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Ngôn ngữ</label><br />
+                                            <select class="Language">
+                                                <option value="Tiếng Việt">Tiếng Việt</option>
+                                                <option value="Tiếng Anh">Tiếng Anh</option>
+                                                <option value="Tiếng Trung">Tiếng trung</option>
+                                                <option value="Tiếng Nhật">Tiếng Nhật</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Số trang</label>
+                                            <input type="number" min="1" max="10000" class="form-control" name="PageNumber" id="txtPageNumber">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Dung lượng</label>
+                                            <input type="number" min="0.1" max="1000" class="form-control" name="Capacity" id="txtCapacity">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Tác giả</label>
+                                            <input type="text" class="form-control" name="Authors" id="txtAuthors">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Đơn vị phát hành</label>
+                                            <input type="text" spellcheck="false"  class="form-control" name="PublishBy" id="txtPublishBy">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Năm phát hành</label>
+                                            <input type="number" min="1980" max="2090" class="form-control" name="DateRelease" id="txtDateRelease">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Nguồn Tham khảo</label>
+                                            <input type="text" class="form-control" name="RefenceText" id="txtReferenceText">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <label>Link tham khảo</label>
+                                            <input type="url" class="form-control" name="RefenceLink" id="txtReferenceLink">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="breadcrumb mt-2">
+                                <div class="container">
+                                    <h5 class="text-info">Đường dẫn tải ebook</h5>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label>Định dạng <b>.PDF</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="url" class="form-control"  placeholder="Link .Pdf" name="LinkPdf" id="txtLinkPdf">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label>Định dạng <b>.EPUB</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="url" class="form-control" name="LinkEpub" placeholder="Link .Epub" id="txtLinkEpub">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <label>Định dạng <b>.MOBI</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="url" class="form-control" placeholder="Link .Mobi" name="LinkMobi" id="txtLinkMobi">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <button type="button" class="btn btn-secondary" onclick="this.form.reset();">Hủy</button>
+                        <button type="button" class="btn btn-primary btnUpload">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@await Html.PartialAsync("_cropImageModal")
+
+@section scripts{
+    <script>
+
+        var listOption = $('#txtBookCategory');
+      var $uploadCrop,
+        tempFilename,
+        rawImg,
+        imageId;
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.upload-demo').addClass('ready');
+                $('#cropImagePop').modal('show');
+                rawImg = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            swal("Sorry - you're browser doesn't support the FileReader API");
+        }
+    }
+
+    $uploadCrop = $('#upload-demo').croppie({
+         viewport: {
+                width: 283,
+                height: 405
+                //type: 'square'
+            },
+     boundary: {
+         width: 300,
+         height: 500
+     },
+        enforceBoundary: false,
+        enableExif: true
+    });
+    $('#cropImagePop').on('shown.bs.modal', function () {
+        $uploadCrop.croppie('bind', {
+            url: rawImg
+        }).then(function () {
+            console.log('jQuery bind complete');
+        });
+    });
+
+    $('.item-img').on('change', function () {
+        imageId = $(this).data('id'); tempFilename = $(this).val();
+        $('#cancelCropBtn').data('id', imageId); readFile(this);
+    });
+    $('#cropImageBtn').on('click', function (ev) {
+        $uploadCrop.croppie('result', {
+            type: 'base64'
+        }).then(function (resp) {
+            $('#item-img-output').attr('src', resp);
+        var id = $('#hiddenId').val();
+    $('#ImgThumbnail').attr('src',resp);
+     $('#cropImagePop').modal('hide');
+        });
+    });
+
+        $.ajax({
+            url: '/Books/GetBookCategory',
+            type: 'get',
+            dataType: 'json',
+            success: function (response) {
+                if (response.status) {
+                    listOption.empty();
+                    var data = response.data;
+                    $(data).each(function (i, item) {
+                        listOption.append($('<option/>', { value: item.id, text: item.name }));
+
+                    });
+                }
+                $('#txtBookType').select2();
+            }
+        });
+
+    </script>
+}

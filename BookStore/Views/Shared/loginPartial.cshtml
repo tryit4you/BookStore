@@ -1,0 +1,90 @@
+﻿<!-- BEGIN # MODAL LOGIN -->
+<div class="modal fade" id="login-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" align="center">
+                <img class="rounded-circle mx-auto" id="img_logo" src="~/images/login-icon.png">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <!-- Begin # DIV Form -->
+            <div id="div-forms">
+
+                <!-- Begin # Login Form -->
+                <form id="login-form">
+                    <div class="modal-body">
+                        <div id="validate-login" class="text-danger"></div>
+                        <input id="login_username" class="form-control" type="text" placeholder="Tên tài khoản" required>
+
+                        <input id="login_password" class="form-control" type="password" placeholder="Mật khẩu" required>
+
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="rememberMe"> Nhớ đăng nhập
+                            </label>
+                        </div>
+                  
+                    </div>
+
+                    <div class="footer">
+                        <div class=" clearfix">
+                            <button id="btn-login" class="btn btn-primary btn-block">Đăng nhập</button>
+                        </div>
+                        <div class="clearfix">
+                            <button id="login_lost_btn" type="button" class="btn btn-link">Quên mật khẩu?</button>
+                            <button id="login_register_btn" type="button" class="btn btn-link">Đăng ký</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End # Login Form -->
+                <!-- Begin | Lost Password Form -->
+                <form id="lost-form" style="display:none;">
+                    <div class="modal-body">
+                        <div id="div-lost-msg">
+                            <div id="icon-lost-msg" class="glyphicon glyphicon-chevron-right"></div>
+                            <span id="error-rs"></span>
+                        </div>
+                        <input id="lost_email" name="lost_email" class="form-control" type="text" placeholder="E-Mail ">
+                        <button type="button" id="forgot-password-btn" class="btn btn-primary btn-block">Gởi</button>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="clearfix">
+                            <button id="lost_login_btn" type="button" class="btn btn-link">Đăng nhập</button>
+                            <button id="lost_register_btn" type="button" class="btn btn-link">Đăng ký</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Lost Password Form -->
+                <!-- Begin | Register Form -->
+                <form id="register-form" class="form-group" role="form" style="display:none;">
+                    <div class="modal-body">
+                        <div id="div-register-msg">
+                            <div id="icon-register-msg" class="glyphicon glyphicon-chevron-right"></div>
+                            
+                            <h5 class="head">Đăng ký tài khoản</h5>
+                            <ul id="validate-register"></ul>
+                        </div>
+                        <input id="register_username" name="register_username" class="form-control" type="text" placeholder="Tên tài khoản" >
+                        <input id="register_email" name="register_email" class="form-control" type="text" placeholder="E-Mail" >
+                        <input id="register_password" name="register_password"class="form-control" type="password" placeholder="Mật khẩu" >
+                    </div>
+                    <div class="footer">
+                        <div>
+                            <button class="btn btn-primary  btn-block" id="btn-register">Đăng ký</button>
+                        </div>
+                        <div>
+                            <button id="register_login_btn" type="button" class="btn btn-link">Đăng nhập</button>
+                        </div>
+                    </div>
+                </form>
+                <!-- End | Register Form -->
+
+            </div>
+            <!-- End # DIV Form -->
+
+        </div>
+    </div>
+</div>
+<!-- END # MODAL LOGIN -->

@@ -1,0 +1,64 @@
+﻿@using BookStore.Areas.Admin.ViewModels
+@model HomeViewModels
+
+<div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-aqua">
+        <div class="inner">
+            <h3>@Model.EbookVm.InToday</h3>
+            <p>Ebook mới</p>
+            <h5>Tất cả @Model.EbookVm.Total</h5>
+
+        </div>
+        <div class="icon">
+            <i class="fa fa-book" ></i>
+        </div>
+        <a href="~/bk-ebook/Books/Index" class="small-box-footer">xem danh sách <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!-- ./col -->
+<div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+        <div class="inner">
+            <h3>@Model.AccountVm.RegisterToday</h3>
+            <p>Đăng ký hôm nay</p>
+            <h5>Tất cả @Model.AccountVm.Total</h5>
+        </div>
+        <div class="icon">
+            <i class="fa fa-user-plus"></i>
+        </div>
+        <a href="~/bk-ebook/account/Index" class="small-box-footer">Quản lý tài khoản <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!-- ./col -->
+<div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-yellow">
+        <div class="inner">
+            <h3>@Model.FeedbackVm.InToday</h3>
+            <p>Phản hồi</p>
+            <p>Tất cả @Model.FeedbackVm.Total</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-feed"></i>
+        </div>
+        <a href="/bk-ebook/feedback/index" class="small-box-footer">Xem phản hồi <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!-- ./col -->
+<div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-red">
+        <div class="inner">
+            <h3>@Model.Category_TypeVm.Category</h3>
+            <p>Danh mục</p>
+            <p>@Model.Category_TypeVm.Type Thể loại</p>
+        </div>
+        <div class="icon">
+            <i class="fa fa-bars"></i>
+        </div>
+        <a href="/bk-ebook/Category/index" class="small-box-footer">Xem thêm <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+</div>
+<!-- ./col -->

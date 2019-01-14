@@ -1,0 +1,29 @@
+﻿
+<div class="col-lg-3 sidebar-widgets">
+    <div class="widget">
+
+        <h4 class="header"><span class="fa fa-cogs" aria-hidden="true"></span> Quản lý tài khoản</h4>
+        <div class="popular-user-list">
+            <ul class="user-cat">
+                <li >
+                    <a href="/tai-khoan/@Model.Id">Thông tin tài khoản<span class="fa fa-github-alt pull-right" aria-hidden="true"></span></a>
+                </li>
+                <li><a href="/e-books/@Model.Id">Thư viện <span class="fa fa-home pull-right" aria-hidden="true"></span></a></li>
+                <li><a href="/upload/@Model.Id">Upload e-book<span class="fa fa-cloud-upload pull-right" aria-hidden="true"></span></a></li>
+
+                <li><a href="/quan-ly/@Model.Id">Quản lý e-book<span class="fa fa-tasks pull-right" aria-hidden="true"></span></a></li>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <li><a href="/admin/home/index">Đi đến quản trị<span class="fa fa fa-ravelry pull-right" aria-hidden="true"></span></a></li>
+                }
+                else
+                {
+                    <li><a href="#">Ý kiến phản hồi<span class="fa fa-paper-plane-o pull-right" aria-hidden="true"></span></a></li>
+
+                }
+            </ul>
+        </div>
+
+
+    </div>
+</div>

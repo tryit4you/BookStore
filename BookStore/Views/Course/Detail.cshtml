@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = Model.Name;
+}
+@model BookStore.Data.Models.Course
+@section banner{
+    <section class="brands-area">
+        <div class="container">
+            <div class="brand-wrap">
+                <ul class="list-inline">
+                    <li><a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right"></i>
+                    <li><a href="#">@Model.Name</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+}
+
+<div class="col-lg-9">
+    <div class="single-page-details">
+
+        <div class="book-details">
+            <div class="book-type-simple">
+                <div class="khoahoc">
+                    <h4 class="text-info">@Model.Name</h4>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="video-frame">
+                    
+                </div>
+                <div class="row">
+                    <section>
+                        <div class="container">
+                            <div class="row">
+                                 <div class="col-sm-12 ">
+                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                         <div class="alert alert-danger"><b>Lưu ý: </b><br />Khóa học được chia sẻ miễn phí không vì mục đích thương mại nếu có điều kiện hãy ủng hộ tác giả bằng cách mua
+                                        khóa học bằng đường link bên dưới. Trân trọng 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 ">
+                                    <h4 class="text-primary">Mô tả khóa học</h4>
+                                    <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+                                         @Html.Raw(Model.Description)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h4 class="text-primary">Bình luận</h4>
+                                    <div class="fb-comment-embed" data-href="https://www.facebook.com/zuck/posts/10102577175875681?comment_id=1193531464007751&amp;reply_comment_id=654912701278942" data-include-parent="false"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@await Html.PartialAsync("_sidebarCoursePartial")

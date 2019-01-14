@@ -1,0 +1,18 @@
+﻿@model BookViewModels
+
+@foreach (var book in Model.Books)
+{
+
+
+    var url = "/v/"+book.MetaName+"/"+book.Id;
+    <div class="single-post-list d-flex flex-row align-items-center">
+        <div class="thumb">
+            <a href="@url"><img class="img-fluid" src="@book.ThumbnailUrl" alt=""></a>
+        </div>
+        <div class="details">
+            <a href="@url"><h6>@book.Name</h6></a>
+            <p><span count="@book.CountDownload"></span>-lượt tải</p>
+        </div>
+    </div>
+    }
+

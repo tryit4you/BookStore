@@ -1,0 +1,13 @@
+﻿@model CategoryViewModels
+
+@foreach (var category in Model.Categories)
+{
+    var url = "/c/" + category.MetaName + "/" + category.Id + "/";
+
+    <li class="col-md-3 mega-item">
+        <span class="list-item">
+            <a href="@url" class="categoryLink" data-id="@category.Id">@category.Name</a>
+        </span>
+    </li>
+
+}

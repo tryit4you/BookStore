@@ -1,0 +1,23 @@
+﻿
+<div class="col-lg-3 sidebar-widgets">
+    <div class="widget-wrap">
+
+        <div class="single-sidebar-widget popular-post-widget">
+            <h4 class="popular-title">Khóa học được quan tâm</h4>
+            <div class="popular-post-list">
+                <ul>
+                    @await Component.InvokeAsync("CourseTop5Download")
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="single-sidebar-widget post-category-widget">
+            <h4 class="category-title">Danh mục khóa học</h4>
+            <ul class="cat-list">
+                @await Component.InvokeAsync("CourseCategory")
+            </ul>
+        </div>
+
+    </div>
+</div>

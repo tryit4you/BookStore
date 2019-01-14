@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Quản trị khóa học";
+}
+@addTagHelper *,BookStore
+@using BookStore.Data.Models
+@using BookStore.Areas.Admin.ViewModels
+@model  IEnumerable<Course>
+
+
+<div class="alert alert-info align-center">
+    Quản trị e-book
+</div>
+
+<div class="clearfix">
+    <div class="card ">
+        <div class="cart-in">
+
+
+            <ul class="nav nav-tabs tab-col-teal" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#home" data-toggle="tab">
+                        <i class="fa fa-table col-blue "></i> Danh sách khóa học
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#createEbook" data-toggle="tab">
+                        <i class="fa fa-plus-circle col-green"></i> Tạo mới khóa học
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="#EditEbook" data-toggle="tab">
+                        <i class="fa fa-edit col-orange"></i> Sửa thông tin
+                    </a>
+                </li>
+
+            </ul>
+            <div class="body">
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group form-inline pull-left">
+                                        <div class="form-line">
+                                            <span class="btn-clear"><i class="fa fa-times-circle"></i></span>
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm..." name="Search" id="txtSearch">
+                                            <button class="btn bg-blue"><i class="fa fa-search"></i></button> <button class="btn btn-danger" id="btn-Deletemulti"><i class="fa fa-trash"></i>Xóa</button>
+                                        </div>
+                                        <hr />
+
+                                    </div>
+                                </div>
+
+                                <hr />
+                            </div>
+
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><label><input type="checkbox" name="selectAll" value="" id="selectAll" />Chọn tất cả</label></th>
+                                        <th width="30%">Tên khóa học</th>
+                                        <th>Hình</th>
+                                        <th>Ngày đăng</th>
+                                        <th>Tác giả</th>
+                                        <th>Trạng thái</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbData"></tbody>
+                            </table>
+
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                                    <p>Trang <mark><span id="currentpage"></span></mark>/<mark><span id="totalpage"></span></mark></p>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                                    <div class="pagination" id="pagination">
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in " id="createEbook">
+
+                        @await Html.PartialAsync("_CreatePartial")
+
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade in " id="EditEbook">
+                        @await Html.PartialAsync("_EditPartial")
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script id="data-template" type="x-tmpl-mustache">
+    <tr class="row_item" data-id="{{ID}}">
+        <td>
+            <input type="checkbox" id="select-{{ID}}" name="selectAll" data-id="{{ID}}" class="chk-col-red selectedItem" />
+            <label for="select-{{ID}}"></label>
+        </td>
+        <td>{{Name}}</td>
+        <td>
+            <img class="img-responsive" src="{{Image}}" width="70" />
+        </td>
+        <td>{{CreatedDate}}</td>
+        <td>{{Authors}}</td>
+
+        <td>{{{Status}}}</td>
+
+        <td>
+            <a class="badge bg-red btn-delete" href="#" data-id="{{ID}}">
+                <i class="fa fa-trash"></i>Xóa
+            </a>
+            <a href="# " class="badge bg-orange-active btn-edit" data-id="{{ID}}">
+                <i class="fa fa-edit"></i>Sửa
+            </a>
+        </td>
+    </tr>
+</script>@await Html.PartialAsync("_cropImageModal")
+
+@section jsFooter{
+    <script src="~/Admin/dist/js/controller/courseController.min.js"></script>
+    <script>
+        var $uploadCrop,
+            tempFilename,
+            rawImg,
+            imageId;
+        function readFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.upload-demo').addClass('ready');
+                    $('#cropImagePop').modal('show');
+                    rawImg = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+            else {
+                swal("Sorry - you're browser doesn't support the FileReader API");
+            }
+        }
+
+        $uploadCrop = $('#upload-demo').croppie({
+            viewport: {
+                width: 300,
+                height: 205
+            },
+            boundary: {
+                width: 350,
+                height: 250
+            },
+            enforceBoundary: false,
+            enableExif: true
+        });
+        $('#cropImagePop').on('shown.bs.modal', function () {
+            $uploadCrop.croppie('bind', {
+                url: rawImg
+            }).then(function () {
+                console.log('jQuery bind complete');
+            });
+        });
+
+        $('.item-img').on('change', function () {
+            imageId = $(this).data('id'); tempFilename = $(this).val();
+            $('#cancelCropBtn').data('id', imageId); readFile(this);
+        });
+        $('#cropImageBtn').on('click', function (ev) {
+            $uploadCrop.croppie('result', {
+                type: 'base64'
+            }).then(function (resp) {
+                $('#item-img-output').attr('src', resp);
+                var id = $('#hiddenId').val();
+                $('#ImgThumbnail,#EditThumbnail').attr('src', resp);
+                $('#cropImagePop').modal('hide');
+            });
+        });
+
+
+    </script>
+}

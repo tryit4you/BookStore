@@ -1,0 +1,236 @@
+﻿@model ApplicationUser
+
+@using System
+@section banner{
+    <section class="brands-area">
+        <div class="container">
+            <div class="brand-wrap">
+                <ul class="list-inline">
+                    <li><a href="/">Trang chủ</a></li>
+                    <i class="fa fa-angle-double-right"></i>
+                    <li><a href="#">Hồ sơ cá nhân</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+}
+
+@await Html.PartialAsync("_sidebarUserPartial")
+<div class="col-md-9">
+    <div class="clearfix">
+        <div class="card ">
+            <div class="cart-in">
+                <div class="card-header">
+                    <div class="container  ">
+                        <div class="tab" role="tabpanel">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs nav-justified" role="tablist">
+                                <li role="presentation" class="nav-item"><a href="#profile" class="nav-link active" aria-controls="profile" role="tab" data-toggle="tab">Thông tin cá nhân</a></li>
+                                <li role="presentation" class="nav-item"><a href="#notification" class="nav-link" aria-controls="notification" role="tab" data-toggle="tab">Thông báo </a></li>
+                                <li role="presentation" class="nav-item"><a href="#feedback" class="nav-link" aria-controls="feedback" role="tab" data-toggle="tab">Phản hồi</a></li>
+                            </ul>
+                            <!-- Tab panes -->
+                            <div class="tab-content tabs" style="margin-top:2%">
+                                <div role="tabpanel" class="tab-pane fade show active" id="profile">
+                                    <div class="container">
+                                        <div>
+                                            <img align="middle" class="fb-image-lg" src="@Model.UrlAvatar" alt="Profile image example" />
+                                            <div class="form-inline">
+                                                <a class="upload-Icon" href="#"> <i class="fa fa-photo"></i></a>
+                                                <input type="file" accept="png/*" name="Image" value="Chọn hình" class="btn btn-primary upload-avatar" />
+                                            </div>
+                                            <div class="fb-profile-text">
+                                                <a href="#" class="btn btn-link btnEdit" style="font-size:24px"><i class="fa fa-edit"></i></a>
+                                                <div class="card-body">
+                                                    <div class="container">
+                                                        <input type="hidden" value="@Model.Id" id="hiddenId" />
+                                                        <table class="table" style="text-align:left">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Tên tài khoản</th>
+                                                                    <td>@Model.UserName</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Email</th>
+                                                                    <td>@Model.Email</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tên người dùng</th>
+                                                                    <td>@(Model.DisplayName ?? "Chưa cập nhật")</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Địa chỉ</th>
+                                                                    <td>@(Model.Address ?? "Chưa cập nhật")</td>
+                                                                </tr>
+                                                            </thead>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <!-- /container -->
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="notification">
+                                    <h3>Thông báo</h3>
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        <strong>Hey !</strong> Chào mừng bạn đến với website.
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="feedback">
+                                    <form role="form" class="form-horizontal" id="frmFeedback" style="display:inline-block">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label pull-left mt-4" ><b>Tên bạn</b></label>
+                                                <input type="text" class="form-control" id="name" name="name"  placeholder="Tên ở đây">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label class="control-label pull-left mt-4" ><b>Email</b></label>
+                                                <input type="email" class="form-control" id="email" name="email" placeholder="Email ở đây">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label pull-left mt-4" ><b>Chủ đề</b> </label>
+                                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Chủ đề">
+                                            </div>
+
+
+                                            <div class="form-group col-md-12">
+                                                <label class="control-label pull-left mt-4" ><b>Nội dung</b></label>
+                                                <textarea class="form-control" id="message"  name="message" rows="6" placeholder="Nhập nội dung..."></textarea>
+                                            </div>
+
+                                        </div>
+                                        <button class="btn btn-outline-info mt-4 pull-right" id="btn-Feedback"><i class="fa fa-send-o"> </i> Gởi</button>
+
+                                    </form>
+                                </div>
+                        </div>
+                    </div>
+                   
+                    @await Html.PartialAsync("_cropImageModal")
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="brow modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    <span id="modal-title">Cập nhật - @Model.UserName</span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </h5>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="frmEdit">
+                    <input type="hidden" id="txtId" value="@Model.Id">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label for="Name">Tên người dùng</label>
+                            <input type="text" class="form-control" name="Name" id="txtName" value="@Model.DisplayName">
+                            <span class="validate"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label for="Address">Địa chỉ</label>
+                            <input type="text" class="form-control" name="Address" id="txtAddress" value="@Model.Address">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <label for="PhoneNumber">Số điện thoại</label>
+                            <input type="text" class="form-control" name="PhoneNumber" id="txtPhoneNumber" value="@Model.PhoneNumber">
+                        </div>
+                    </div>
+
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" class="btn btn-primary btnSave">Lưu lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+  
+    var $uploadCrop,
+        tempFilename,
+        rawImg,
+        imageId;
+    function readFile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('.upload-demo').addClass('ready');
+                $('#cropImagePop').modal('show');
+                rawImg = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+        else {
+            swal("Sorry - you're browser doesn't support the FileReader API");
+        }
+    }
+
+    $uploadCrop = $('#upload-demo').croppie({
+         viewport: {
+                width: 200,
+                height: 200,
+                type: 'circle'
+            },
+     boundary: {
+         width: 300,
+         height: 300
+     },
+        enforceBoundary: false,
+        enableExif: true
+    });
+    $('#cropImagePop').on('shown.bs.modal', function () {
+        // alert('Shown pop');
+        $uploadCrop.croppie('bind', {
+            url: rawImg
+        }).then(function () {
+            console.log('jQuery bind complete');
+        });
+    });
+
+    $('.upload-avatar').on('change', function () {
+        imageId = $(this).data('id'); tempFilename = $(this).val();
+        $('#cancelCropBtn').data('id', imageId); readFile(this);
+    });
+    $('#cropImageBtn').on('click', function (ev) {
+        $uploadCrop.croppie('result', {
+            type: 'base64'
+        }).then(function (resp) {
+            $('#item-img-output').attr('src', resp);
+        var id = $('#hiddenId').val();
+            $.ajax({
+                url: '/useraccount/uploadAvatar',
+                data: { "image": resp, userid: id },
+                type: 'post',
+                dataType: 'json',
+                success: function (res) {
+                    if (res.status) {
+                        $('#cropImagePop').modal('hide');
+                        location.reload();
+                    }
+                }
+            });
+
+        });
+    });
+
+    </script>
+}

@@ -1,0 +1,24 @@
+﻿@model BookStore.Data.Models.Book
+
+    <tr class="row_item" data-id="@Model.Id">
+       
+        <td>@Model.Name</td>
+        <td>
+            <img class="img-responsive" src="@Model.ThumbnailUrl" width="70" />
+        </td>
+        <td>@Model.CreatedDate</td>
+
+        <td>
+            @{var status = Model.Status == false ? "<a class='badge bg-red btn-active' href='#' data-id='"+Model.Id+"'><i class='fa fa-ban'></i>Not active</a>" : "<a class='badge bg-green btn-active' href='#' data-id='"+Model.Id+"'><i class='fa fa-check'></i>active</a>";}
+            @Html.Raw(status)
+        </td>
+       
+<td>
+            <a class="badge bg-red btn-delete" href="#" data-id="@Model.Id">
+                <i class="fa fa-trash"></i>Xóa
+            </a>
+            <a href="# " class="badge bg-orange-active btn-edit" data-id="@Model.Id">
+                <i class="fa fa-edit"></i>Sửa
+            </a>
+        </td>
+    </tr>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="icon" href="/images/favicon.png">
+    <!-- Author Meta -->
+    <meta name="author">
+    <!-- Meta Description -->
+    <meta name="description" content="Download ebook miễn phí, ebook chuyên ngành, lập trình, kinh tế, phát triển bản thân">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="bkebook, download ebook, free ebook, sách miễn phí, bk, ebook">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>BkEbook kho ebook chuyên ngành với nhiều thể loại khác nhau, download hoàn toàn miễn phí</title>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+        <link href="~/css/stylebundle.css" rel="stylesheet" />
+        <link href="~/lib/croppie/croppie.css" rel="stylesheet" />
+        <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+        <link href="~/lib/select2/select2.min.css" rel="stylesheet" />
+        <link href="~/css/simplePagination.css" rel="stylesheet" />
+    </head>
+<body>
+    <header id="header">
+        @await Html.PartialAsync("_headerPartial")
+    </header><!-- #header -->
+    <!-- start banner Area -->
+    <section class="relative about-banner">
+        @RenderSection("banner", required: false)
+    </section>
+    <!-- End banner Area -->
+    <!-- Start post-content Area -->
+    <section class="post-content-area single-post-area">
+        <div class="container">
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
+    </section>
+    <!-- End post-content Area -->
+    <!-- start footer Area -->
+    <footer class="footer-area section-gap">
+        <div class="container">
+
+            @*@await Component.InvokeAsync("Page")*@
+            @await Html.PartialAsync("_footerPartial")
+        </div>
+    </footer><div class="container">
+    </div>
+    @await Html.PartialAsync("loginPartial")
+    <!-- End footer Area -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a0ae4de0122cb11"></script>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1&appId=456494731530176&autoLogAppEvents=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <script src="~/js/scripts190818.min.js"></script>
+    <script src="~/lib/libscript190818.min.js"></script>
+    <script src="~/lib/tinymce/tinymce.min.js"></script>
+    <script src="~/lib/tinymce/tinyConfig.js"></script>
+    <script src="~/js/common_user.js"></script>
+    <script src="~/js/jquery.simplePagination.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

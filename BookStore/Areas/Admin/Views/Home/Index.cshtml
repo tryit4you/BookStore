@@ -1,0 +1,34 @@
+﻿@model Dictionary<string, object>
+
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewBag.Title = "Trang chủ";
+}
+
+<div class="alert alert-info align-center">
+    Xin chào!! @User.Identity.Name
+</div>
+
+<div class="row">
+    @await  Component.InvokeAsync("HomeStatistic")
+      </div>
+<div class="clearfix">
+    <div class="card">
+        <table class="table table-hover">
+            @foreach (var kvp in Model)
+            {
+
+                <tr>
+                    <th>@kvp.Key</th>
+                    <td>@kvp.Value</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+@if (User?.Identity?.IsAuthenticated ?? false)
+{
+    <a asp-controller="Account" asp-action="Logout"
+       class="btn btn-danger">Đăng xuất</a>
+}
