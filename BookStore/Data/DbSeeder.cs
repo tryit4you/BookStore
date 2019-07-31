@@ -482,7 +482,7 @@ namespace BookStore.Data
             {
 
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = "Admin",
+                UserName = "administrator",
                 Email = "vohung.it@gmail.com",
                 CreatedDate = DateTime.Now,
                 LastModifiedDate = DateTime.Now,
@@ -495,9 +495,13 @@ namespace BookStore.Data
             };
             if (await userManager.FindByNameAsync(user_Admin.UserName) == null)
             {
-                await userManager.CreateAsync(user_Admin, "pass4Admin");
-                //await userManager.AddToRoleAsync(user_Admin,role_Administrator);
-                await dbContext.SaveChangesAsync();
+              IdentityResult result =   await userManager.CreateAsync(user_Admin, "pass4Admin");
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user_Admin,role_Administrator);
+                    await dbContext.SaveChangesAsync();
+                }
+             
             }
    
 

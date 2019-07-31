@@ -53,8 +53,10 @@ namespace BookStore.Data
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<Slide> Slides { get; set; }
-        public virtual DbSet<P_Comment> P_Comments { get; set; }
-        public virtual DbSet<C_Comment> C_Comments { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
+        public virtual DbSet<PostCategory> PostCategories { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<History> Histories { get; set; }
         public virtual DbSet<DownloadFormat> DownloadFormats { get; set; }
         public virtual DbSet<EmailRegister> EmailRegisters { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
